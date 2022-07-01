@@ -10,7 +10,6 @@ export default function UserProfile({ userEmail }: UserProfileProps) {
         display: 'flex',
         alignItems: 'center',
         width: '100%',
-        height: '100%',
       }}
     >
       <Typography sx={{ fontSize: '14px', fontWeight: '600' }}>

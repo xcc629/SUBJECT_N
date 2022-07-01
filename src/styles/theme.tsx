@@ -12,6 +12,7 @@ const theme = createTheme({
       200: '#9FA2B4',
       300: '#DDE2FF',
       400: '#525468',
+      500: '#F7F8FC;',
     },
   },
 });
