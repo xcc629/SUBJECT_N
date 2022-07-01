@@ -1,14 +1,27 @@
+import { CssBaseline, ThemeProvider } from '@mui/material';
 import * as React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/login';
+import Main from './pages/main';
+import theme from './styles/theme';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-      </Routes>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Main />}>
+            <Route path="/movie/list" element={<Main />} />
+            <Route path="/movie/item/add" />
+            <Route path="/movie/item/del" />
+
+            <Route path="/search" element={<Main />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
