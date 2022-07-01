@@ -13,7 +13,7 @@ import LogoImageText from '../atoms/LogoImageText';
 
 export default function SelectedListItem() {
   const navigate = useNavigate();
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   const goTo = useCallback((link: string) => {
     navigate(link);
