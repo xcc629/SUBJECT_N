@@ -7,7 +7,6 @@ export interface UserProfileProps {
 }
 
 export interface MovieListItemProps {
-  id: number;
   backdropPath: string;
   title: string;
   voteAverage: number;
