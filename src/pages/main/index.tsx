@@ -2,11 +2,13 @@ import Box from '@mui/material/Box';
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import SideBar from '../../components/organisms/SideBar';
+import UserProfile from '../../components/atoms/UserProfile';
 
 export default function Main() {
   return (
     <Box sx={{ display: 'flex' }}>
       <SideBar />
+      <UserProfile userEmail="www.www" />
       <Routes>
         <Route path="/movie/list" element={<>dd</>} />
         <Route path="/movie/item/add" />
