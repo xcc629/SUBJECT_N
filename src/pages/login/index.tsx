@@ -4,19 +4,24 @@ import {
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Checkbox,
-  Link,
+  Box,
+  Typography,
+  Container,
+  createTheme,
+  ThemeProvider,
 } from '@mui/material';
+import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme();
+const theme = createTheme({
+  palette: {
+    background: {
+      default: '#363740',
+    },
+    primary: {
+      main: '#3751FF',
+    },
+  },
+});
 
 export default function SignIn() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -34,22 +39,34 @@ export default function SignIn() {
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            marginTop: 8,
+            width: '380px',
+            height: '523px',
+            background: 'white',
+            borderRadius: '8px',
           }}
         >
           <Avatar
             sx={{
-              m: 1,
-              bgcolor: 'secondary.main',
+              m: 4,
+              width: '48px',
+              height: '48px',
+              bgcolor: 'primary.main',
+              color: 'white',
             }}
           >
-            <LockOutlinedIcon />
+            <LocalMoviesIcon />
           </Avatar>
-          <Typography component="h1" variant="h5">
-            Sign in
+          <Typography
+            fontWeight="700"
+            component="h1"
+            variant="h5"
+            marginBottom="40px"
+          >
+            로그인
           </Typography>
           <Box
             component="form"
@@ -64,7 +81,7 @@ export default function SignIn() {
               required
               fullWidth
               id="email"
-              label="Email Address"
+              label="EMAIL"
               name="email"
               autoComplete="email"
               autoFocus
@@ -74,14 +91,10 @@ export default function SignIn() {
               required
               fullWidth
               name="password"
-              label="Password"
+              label="PASSWORD"
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               type="submit"
@@ -92,20 +105,8 @@ export default function SignIn() {
                 mb: 2,
               }}
             >
-              Sign In
+              Log In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  Don't have an account? Sign Up
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
