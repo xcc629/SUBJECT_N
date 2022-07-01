@@ -7,23 +7,13 @@ import {
   Box,
   Typography,
   Container,
-  createTheme,
   ThemeProvider,
 } from '@mui/material';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 
-const theme = createTheme({
-  palette: {
-    background: {
-      default: '#363740',
-    },
-    primary: {
-      main: '#3751FF',
-    },
-  },
-});
+import loginTheme from '../../styles/theme';
 
-export default function SignIn() {
+export default function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -34,7 +24,7 @@ export default function SignIn() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={loginTheme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -45,7 +35,7 @@ export default function SignIn() {
             marginTop: 8,
             width: '380px',
             height: '523px',
-            background: 'white',
+            background: 'background',
             borderRadius: '8px',
           }}
         >
@@ -61,10 +51,9 @@ export default function SignIn() {
             <LocalMoviesIcon />
           </Avatar>
           <Typography
-            fontWeight="700"
             component="h1"
             variant="h5"
-            marginBottom="40px"
+            sx={{ marginBottom: '42px', fontWeight: 700 }}
           >
             로그인
           </Typography>
@@ -73,35 +62,54 @@ export default function SignIn() {
             onSubmit={handleSubmit}
             noValidate
             sx={{
-              mt: 1,
+              display: 'flex',
+              flexDirection: 'column',
             }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="EMAIL"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="PASSWORD"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
+            <Box component="div">
+              <Typography sx={{ fontSize: '12px', color: 'primary.100' }}>
+                EMAIL
+              </Typography>
+              <TextField
+                margin="none"
+                required
+                id="email"
+                label="Email address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                size="small"
+                sx={{
+                  width: '316px',
+                  hegiht: '42px',
+                }}
+              />
+            </Box>
+            <Box pt={3}>
+              <Typography sx={{ fontSize: '12px', color: 'primary.100' }}>
+                PASSWORD
+              </Typography>
+              <TextField
+                margin="none"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                size="small"
+                helperText=""
+              />
+            </Box>
             <Button
               type="submit"
               fullWidth
               variant="contained"
               sx={{
-                mt: 3,
+                width: '316px',
+                height: '48px',
+                mt: 5,
                 mb: 2,
               }}
             >
