@@ -1,6 +1,6 @@
 import { createTheme } from '@mui/material';
 
-const loginTheme = createTheme({
+const theme = createTheme({
   palette: {
     background: {
       default: '#363740',
@@ -8,9 +8,12 @@ const loginTheme = createTheme({
     },
     primary: {
       main: '#3751FF',
-      100: '#9FA2B4',
+      100: '#A4A6B3',
+      200: '#9FA2B4',
+      300: '#DDE2FF',
+      400: '#525468',
     },
   },
 });
 
-export default loginTheme;
+export default theme;
