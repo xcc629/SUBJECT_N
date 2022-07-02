@@ -1,3 +1,7 @@
+import * as React from 'react';
+
+import { MovieListDataType } from './dataTypes';
+
 export interface LogoProps {
   withText: boolean;
 }
@@ -12,4 +16,12 @@ export interface MovieListItemProps {
   voteAverage: number;
   voteCount: number;
   releaseDate: string;
+}
+
+export interface MovieListSectionProps {
+  datas: MovieListDataType[];
+  types: 'search' | 'list';
+}
+export interface CategorySelectProps {
+  t: MovieListSectionProps['types'];
 }

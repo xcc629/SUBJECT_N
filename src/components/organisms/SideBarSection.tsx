@@ -1,6 +1,10 @@
 import * as React from 'react';
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
+import {
+  useLinkClickHandler,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -11,16 +15,36 @@ import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 
 import LogoImageText from '../atoms/LogoImageText';
 
-export default function SelectedListItem() {
+export default function SideBarSection() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const goTo = useCallback((link: string) => {
+  const goTo = (link: string) => {
     navigate(link);
+  };
+
+  const handleFirstLocation = useCallback(() => {
+    switch (location.pathname) {
+      case '/search':
+        setSelectedIndex(1);
+        break;
+
+      default:
+        setSelectedIndex(0);
+        break;
+    }
   }, []);
 
-  const handleListItemClick = useCallback((index: number) => {
-    setSelectedIndex(index);
+  const handleListItemClick = useCallback(
+    (index: number) => {
+      setSelectedIndex(index);
+    },
+    [selectedIndex],
+  );
+
+  useLayoutEffect(() => {
+    handleFirstLocation();
   }, []);
 
   return (
@@ -44,7 +68,7 @@ export default function SelectedListItem() {
           sx={{ color: selectedIndex === 0 ? 'primary.300' : 'primary.400' }}
         >
           <ViewListIcon sx={{ margin: '0 20px' }} />
-          <ListItemText primary="movie 목록 조회" />
+          <ListItemText primary="Movie 목록 조회" />
         </ListItemButton>
         <ListItemButton
           selected={selectedIndex === 1}
