@@ -25,3 +25,8 @@ export interface MovieListSectionProps {
 export interface CategorySelectProps {
   t: MovieListSectionProps['types'];
 }
+
+export interface PopoverBoxProps {
+  isOpen: boolean;
+  contentText: string;
+}

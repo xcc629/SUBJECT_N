@@ -1,22 +1,81 @@
+/* eslint-disable operator-linebreak */
 import * as React from 'react';
-import {
-  Button,
-  CssBaseline,
-  TextField,
-  Box,
-  Typography,
-  Container,
-} from '@mui/material';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
+import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LogoImageText from '../../components/atoms/LogoImageText';
 
+import { postRequestToken, postAccessToken } from '../../apis/auth';
+
 export default function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [pw, setPw] = useState('');
+  const [emailVaild, setEmailVaild] = useState<Boolean | null>(null);
+  const [pwVaild, setPwVaild] = useState<Boolean | null>(null);
+  // RegExp
+  const emailRegExp =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+  const pwRegExp1 = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d$@$!%*#?&]{10,}$/;
+  const pwRegExp2 = /^(?=.*[A-Za-z])(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
+  const pwRegExp3 = /^(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{10,}$/;
+  const pwRegExp4 =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+  //
+
+  const goTo = () => {
+    navigate('/movie/list');
+  };
+
+  const emailVaildFc = useCallback(() => {
+    if (email) {
+      setEmailVaild(emailRegExp.test(email));
+    }
+  }, [email]);
+
+  const pwVaildFc = useCallback(() => {
+    if (pw) {
+      const pwVaildResult =
+        pwRegExp1.test(pw) ||
+        pwRegExp2.test(pw) ||
+        pwRegExp3.test(pw) ||
+        pwRegExp4.test(pw);
+
+      setPwVaild(pwVaildResult);
+    }
+  }, [pw]);
+
+  const handleChange = useCallback(
+    (event: React.ChangeEvent<HTMLFormElement>) => {
+      const data = new FormData(event.currentTarget);
+
+      const user = {
+        email: data.get('email'),
+        password: data.get('password'),
+      };
+
+      setEmail(user.email as string);
+      setPw(user.password as string);
+      emailVaildFc();
+      pwVaildFc();
+    },
+    [email, pw],
+  );
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+
+    if (emailVaild && pwVaild) {
+      postRequestToken().then((result) => {
+        window.location.href = `https://www.themoviedb.org/auth/access?request_token=${result}`;
+      });
+    }
   };
 
   return (
@@ -27,7 +86,7 @@ export default function Login() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginTop: 8,
+          marginTop: '10vh',
           width: '380px',
           height: '523px',
           background: 'background',
@@ -37,7 +96,6 @@ export default function Login() {
         <Box m={4}>
           <LogoImageText withText={false} />
         </Box>
-
         <Typography
           component="h1"
           variant="h5"
@@ -48,48 +106,62 @@ export default function Login() {
         <Box
           component="form"
           onSubmit={handleSubmit}
+          onChange={handleChange}
           noValidate
           sx={{
             display: 'flex',
             flexDirection: 'column',
+            alignItems: 'center',
+            pt: 2,
           }}
         >
-          <Box component="div">
-            <Typography sx={{ fontSize: '12px', color: 'primary.100' }}>
-              EMAIL
-            </Typography>
-            <TextField
-              margin="none"
-              required
-              id="email"
-              label="Email address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              size="small"
-              sx={{
-                width: '316px',
-                hegiht: '42px',
-              }}
-            />
-          </Box>
-          <Box pt={3}>
-            <Typography sx={{ fontSize: '12px', color: 'primary.100' }}>
-              PASSWORD
-            </Typography>
-            <TextField
-              margin="none"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              size="small"
-              helperText=""
-            />
-          </Box>
+          <TextField
+            error={emailVaild !== null && !emailVaild}
+            helperText={
+              emailVaild !== null &&
+              !emailVaild &&
+              '이메일 형식이 맞지 않습니다.'
+            }
+            margin="none"
+            required
+            id="email"
+            label="Email address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            size="small"
+            sx={{
+              width: '316px',
+              hegiht: '42px',
+            }}
+          />
+          <TextField
+            error={pwVaild !== null && !pwVaild}
+            helperText={
+              pwVaild !== null && !pwVaild && '비밀번호 형식이 맞지 않습니다.'
+            }
+            margin="dense"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            size="small"
+          />
+          <Typography
+            sx={{
+              width: '300px',
+              fontSize: '12px',
+              pt: 4,
+            }}
+          >
+            {`연속적인 숫자나 생일, 전화번호 등 
+            추측하기 쉬운 개인정보 및
+            아이디와 비슷한 비밀번호는 
+            사용하지 않기를 권고합니다.`}
+          </Typography>
           <Button
             type="submit"
             fullWidth
