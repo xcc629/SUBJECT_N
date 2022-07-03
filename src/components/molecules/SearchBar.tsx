@@ -1,24 +1,24 @@
 import * as React from 'react';
-import { useCallback, useState } from 'react';
+import styled from '@emotion/styled';
 
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import styled from '@emotion/styled';
 import SearchIcon from '@mui/icons-material/Search';
+
+import { SearchBarProps } from '../../types/propsTypes';
 
 const Form = styled.form`
   display: flex;
   flex-direction: row;
-  max-width: 490px;
-  min-width: 120px;
+  width: 500px;
   height: 40px;
-  margin: 20px;
+  margin: 20px auto;
   border: 2px solid silver;
   border-radius: 6px;
 `;
 
 const Search = styled.input`
-  width: 90%;
+  width: 100%;
   border: none;
   border-radius: 6px;
   padding-left: 5px;
@@ -36,18 +36,13 @@ const Button = styled.button`
   background-color: transparent;
 `;
 
-export default function CategorySelect() {
-  const [category, setcategory] = useState('movie');
-  const [search, setSearch] = useState('');
-
-  const onSubmitForm = useCallback(
-    (e: React.FormEvent) => {
-      e.preventDefault();
-      console.log(search, category);
-    },
-    [search, category],
-  );
-
+export default function SearchBar({
+  category,
+  setcategory,
+  search,
+  setSearch,
+  onSubmitForm,
+}: SearchBarProps) {
   return (
     <Form onSubmit={onSubmitForm}>
       <Select
@@ -56,6 +51,9 @@ export default function CategorySelect() {
           setcategory(e.target.value);
         }}
         displayEmpty
+        sx={{
+          width: 130,
+        }}
         inputProps={{ 'aria-label': 'Without label' }}
       >
         <MenuItem value="movie">movie</MenuItem>

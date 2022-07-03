@@ -1,6 +1,9 @@
-import { Box, Typography } from '@mui/material';
-import Avatar from '@mui/material/Avatar';
 import * as React from 'react';
+
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+
 import { UserProfileProps } from '../../types/propsTypes';
 
 export default function UserProfile({ userEmail }: UserProfileProps) {

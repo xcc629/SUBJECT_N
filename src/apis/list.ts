@@ -11,7 +11,7 @@ export default async function getList() {
     );
 
     const result = await res.json();
-    console.log(result);
+
     if (result.status_message) {
       throw new Error(`${result.status_message}`);
     }

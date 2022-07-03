@@ -13,26 +13,7 @@ import getList from '../../apis/list';
 
 export default function Main() {
   const location = useLocation();
-  const [data, setData] = useState([
-    {
-      adult: false,
-      backdrop_path: '/7ff2FyFmskEFfmXHkxuqVr47DiG.jpg',
-      genre_ids: [12, 14, 28, 53],
-      id: 1979,
-      media_type: 'movie',
-      original_language: 'en',
-      original_title: 'Fantastic Four: Rise of the Silver Surfer',
-      overview:
-        "The Fantastic Four return to the big screen as a new and all powerful enemy threatens the Earth. The seemingly unstoppable 'Silver Surfer', but all is not what it seems and there are old and new enemies that pose a greater threat than the intrepid superheroes realize.",
-      popularity: 45.605,
-      poster_path: '/9wRfzTcMyyzkQxVDqBHv8RwuZOv.jpg',
-      release_date: '2007-06-13',
-      title: 'Fantastic Four: Rise of the Silver Surfer',
-      video: false,
-      vote_average: 5.6,
-      vote_count: 6813,
-    },
-  ]);
+  const [data, setData] = useState([]);
 
   const handleTitleName = useCallback(() => {
     switch (location.pathname) {
@@ -59,7 +40,7 @@ export default function Main() {
     };
 
     handleData();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -69,7 +50,7 @@ export default function Main() {
           display: 'flex',
           flexDirection: 'column',
           width: '100%',
-          height: '100vh',
+          minHeight: '100vh',
           bgcolor: 'primary.500',
         }}
       >
