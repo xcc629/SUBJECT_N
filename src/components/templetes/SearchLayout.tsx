@@ -41,7 +41,7 @@ export default function SearchLayout() {
         case 'people':
           getPeople(encoded).then((result) => {
             setType(category);
-            console.log(result);
+
             return setData(result);
           });
           break;
