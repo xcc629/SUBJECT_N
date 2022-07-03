@@ -67,6 +67,7 @@ export default function PersonListSection({ datas }: PersonListSectionProps) {
       </Typography>
       <TreeView
         aria-label="toggle"
+        defaultExpanded={['1', '2']}
         defaultCollapseIcon={<ExpandMoreIcon />}
         defaultExpandIcon={<ChevronRightIcon />}
         sx={{ flexGrow: 1, maxWidth: '1120px', overflowY: 'auto' }}
@@ -78,16 +79,16 @@ export default function PersonListSection({ datas }: PersonListSectionProps) {
             width: '100%',
           }}
         >
-          {makeList('movie')}
+          {datas && makeList('movie')}
         </TreeItem>
         <TreeItem
-          nodeId="5"
+          nodeId="2"
           label="TV"
           sx={{
             width: '100%',
           }}
         >
-          {makeList('tv')}
+          {datas && makeList('tv')}
         </TreeItem>
       </TreeView>
     </Box>
