@@ -1,10 +1,6 @@
 import * as React from 'react';
-import { useCallback, useEffect, useLayoutEffect, useState } from 'react';
-import {
-  useLinkClickHandler,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom';
+import { useCallback, useLayoutEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';

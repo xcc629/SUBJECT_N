@@ -1,4 +1,4 @@
-async function getList() {
+export default async function getList() {
   try {
     const res = await fetch(
       `https://api.themoviedb.org/4/list/1?api_key=${process.env.REACT_APP_API_KEY3}`,
@@ -11,13 +11,12 @@ async function getList() {
     );
 
     const result = await res.json();
-    if (!result.succes) {
+    console.log(result);
+    if (result.status_message) {
       throw new Error(`${result.status_message}`);
     }
-    return result.result;
+    return result.results;
   } catch (err) {
     throw new Error(`${err}`);
   }
 }
-
-export default { getList };
