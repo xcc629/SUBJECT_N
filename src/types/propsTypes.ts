@@ -22,11 +22,11 @@ export interface MovieListSectionProps {
   datas: MovieListDataType[];
   types: 'search' | 'list';
 }
-export interface CategorySelectProps {
-  t: MovieListSectionProps['types'];
+
+export interface MovieListLayoutProps {
+  datas: MovieListDataType[];
 }
 
-export interface PopoverBoxProps {
-  isOpen: boolean;
-  contentText: string;
+export interface CategorySelectProps {
+  t: MovieListSectionProps['types'];
 }

@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useCallback, useState } from 'react';
+
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -6,16 +8,12 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
-import { useCallback, useState } from 'react';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+
+import SearchBar from '../molecules/SearchBar';
 import MovieListItem from '../molecules/MovieListItem';
 import { MovieListSectionProps } from '../../types/propsTypes';
-import SearchBar from '../molecules/SearchBar';
 
 export default function MovieListSection({
   datas,

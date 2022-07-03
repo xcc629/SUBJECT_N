@@ -1,5 +1,8 @@
 /* eslint-disable operator-linebreak */
 import * as React from 'react';
+import { useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
@@ -7,11 +10,9 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import LogoImageText from '../../components/atoms/LogoImageText';
 
-import { postRequestToken, postAccessToken } from '../../apis/auth';
+import { postRequestToken } from '../../apis/auth';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -28,10 +29,6 @@ export default function Login() {
   const pwRegExp4 =
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
   //
-
-  const goTo = () => {
-    navigate('/movie/list');
-  };
 
   const emailVaildFc = useCallback(() => {
     if (email) {
