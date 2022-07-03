@@ -9,11 +9,20 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 
-import LogoImageText from '../../components/atoms/LogoImageText';
+import { useDispatch } from 'react-redux';
 
-import { postRequestToken } from '../../apis/auth';
+import { useNavigate } from 'react-router-dom';
+import { postLogin } from '../../redux/login/slice';
+
+import LogoImageText from '../../components/atoms/LogoImageText';
+import { AppDispatch } from '../../redux/store';
 
 export default function Login() {
+  // loginReducer
+  const dispatch = useDispatch<AppDispatch>();
+  //
+  const navigate = useNavigate();
+  //
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   const [emailVaild, setEmailVaild] = useState<Boolean | null>(null);
@@ -67,8 +76,8 @@ export default function Login() {
     event.preventDefault();
 
     if (emailVaild && pwVaild) {
-      postRequestToken().then((result) => {
-        window.location.href = `https://www.themoviedb.org/auth/access?request_token=${result}`;
+      dispatch(postLogin(email)).then((result) => {
+        navigate('/movie/list');
       });
     }
   };
