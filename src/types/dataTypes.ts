@@ -6,7 +6,7 @@ export interface MoviDataType {
   original_title: string;
   genre_ids: number[];
   id: number;
-  media_type: string;
+  media_type: 'movie' | 'tv';
   original_language: string;
   title: string;
   backdrop_path: string;
@@ -23,7 +23,7 @@ export interface TVshowDataType {
   overview: string;
   backdrop_path: string;
   vote_average: number;
-  media_type: string;
+  media_type: 'movie' | 'tv';
   first_air_date: string;
   origin_country: string[];
   genre_ids: number[];
@@ -45,5 +45,8 @@ export interface PeopleSearchDataType {
   profile_path: string | null;
   adult: boolean;
   id: number;
-  known_for: MoviDataType | TVshowDataType;
+  known_for: (MoviDataType | TVshowDataType)[];
+  known_for_department: string;
+  name: string;
+  popularity: number;
 }

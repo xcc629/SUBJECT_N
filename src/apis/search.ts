@@ -5,7 +5,7 @@ async function getTvShow(searchValue: string) {
 
     const result = await res.json();
 
-    return result.resuts;
+    return result.results;
   } catch (err) {
     throw new Error(`${err}`);
   }
@@ -33,7 +33,7 @@ async function getPeople(searchValue: string) {
 
     const result = await res.json();
 
-    return result.result;
+    return result.results;
   } catch (err) {
     throw new Error(`${err}`);
   }

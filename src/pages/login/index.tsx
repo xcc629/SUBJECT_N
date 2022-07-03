@@ -1,7 +1,6 @@
 /* eslint-disable operator-linebreak */
 import * as React from 'react';
 import { useCallback, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -15,7 +14,6 @@ import LogoImageText from '../../components/atoms/LogoImageText';
 import { postRequestToken } from '../../apis/auth';
 
 export default function Login() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [pw, setPw] = useState('');
   const [emailVaild, setEmailVaild] = useState<Boolean | null>(null);

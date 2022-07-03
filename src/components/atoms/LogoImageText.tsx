@@ -1,8 +1,9 @@
+import * as React from 'react';
+
 import Avatar from '@mui/material/Avatar';
+import Typography from '@mui/material/Typography';
 import LocalMoviesIcon from '@mui/icons-material/LocalMovies';
 
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
 import { LogoProps } from '../../types/propsTypes';
 
 export default function Logo({ withText }: LogoProps) {
