@@ -25,7 +25,7 @@ npm i
 스크립트로 설치를 진행한 후 아래 스크립트로 빌드를 한 번 진행해주세요.
 
 ```
-npm build 혹은 npm run build
+npm run build
 ```
 
 <br/>
@@ -35,7 +35,7 @@ npm build 혹은 npm run build
 아래 스크립트로 실행하면 `localhost:3000`에 로그인 페이지가 나타나면 정상 설치및 실행 된 것입니다. 만약 정상적으로 로그인 기능이 작동하지 않는다면, 빌드를 한번 더 진행해주시면 감사하겠습니다.
 
 ```
-npm start 혹은 npm run start
+npm run start
 ```
 
 <br/>
