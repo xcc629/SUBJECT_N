@@ -73,10 +73,16 @@ npm run start
 ### css 프레임워크
 
     MUI(ver 5.8.6), emotion-react(ver 11.9.3)
+    
+- 제공되는 ui가 적절하며 리액트와 합이 좋다고 판단하여 MUI를 사용하였습니다. 
+- MUI에서 권장하는 emotion을 사용하였습니다.
 
 ### 상태관리 라이브러리
 
     Redux(ver 4.2.0), react-redux(ver 8.0.2), reduxjs-toolkit(ver 1.8.3)
+    
+- 리덕스를 학습 후 적용해보고 싶어 선택하였습니다. 
+- 리덕스 툴킷으로 보다 간편히 리덕스를 사용하고, createAsyncThunk로 비동기처리를 하기 위해서 사용하였습니다.
 
 ### 버전 및 프로젝트 관리
 
@@ -85,6 +91,8 @@ npm run start
 ### 기타
 
     redux-logger(ver 3.0.6)
+
+- 전역 상태 변화를 보기 위하여 미들웨어를 설치하였습니다.
 
 <br/>
 
