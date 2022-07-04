@@ -116,3 +116,9 @@ npm start 혹은 npm run start
 
 <br/>
 
+## 시연영상
+
+기능작동하는 영상을 짧게 녹화해보았습니다. 아래 링크를 클릭하시면 시연영상을 보실 수 있습니다.
+
+- 링크:
+  https://youtu.be/Zh70Hzb-wrk
