@@ -19,6 +19,7 @@ export interface SearchBarProps {
   setcategory: React.Dispatch<React.SetStateAction<string>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  // eslint-disable-next-line no-unused-vars
   onSubmitForm: (e: React.FormEvent) => void;
 }
 

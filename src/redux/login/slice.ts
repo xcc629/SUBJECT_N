@@ -12,7 +12,7 @@ export const postLogin = createAsyncThunk(
     const data = { email: '', requestToken: '', accessToken: '' };
     try {
       if (localStorage.getItem('requestToken')) {
-        const result = await postAccessToken(email);
+        const result = await postAccessToken();
         return {
           ...data,
           email,
@@ -20,7 +20,7 @@ export const postLogin = createAsyncThunk(
           accessToken: result.access_token,
         };
       }
-      const result = await postRequestToken(email);
+      const result = await postRequestToken();
       return { result };
     } catch (err) {
       return thunkAPI.rejectWithValue(await err);

@@ -4,6 +4,7 @@ import * as React from 'react';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import TheatersIcon from '@mui/icons-material/Theaters';
 
 import {
   ImgWrapper,
@@ -63,7 +64,9 @@ const switchTableRow = (
                 alt={`${props.title} poster`}
               />
             ) : (
-              <FakeCoverWrapper />
+              <FakeCoverWrapper>
+                <TheatersIcon sx={{ fontSize: 40, color: 'silver' }} />
+              </FakeCoverWrapper>
             )}
             <InfoWrapper>
               <strong>{props.title}</strong>

@@ -3,6 +3,8 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 
 import Box from '@mui/material/Box';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+
 import { PersonListItemProps } from '../../types/propsTypes';
 
 const ImgWrapper = styled.img`
@@ -14,11 +16,14 @@ const ImgWrapper = styled.img`
 `;
 
 const FakeProfileWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 150px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  background-color: silver;
+  background-color: whitesmoke;
 `;
 
 const InfoWrapper = styled.div`
@@ -52,7 +57,9 @@ export default function PersonListItem({
           alt={`${name}profilePicture`}
         />
       ) : (
-        <FakeProfileWrapper />
+        <FakeProfileWrapper>
+          <PersonOutlineIcon sx={{ fontSize: 100, color: 'silver' }} />
+        </FakeProfileWrapper>
       )}
 
       <InfoWrapper>

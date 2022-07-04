@@ -76,7 +76,7 @@ export default function Login() {
     event.preventDefault();
 
     if (emailVaild && pwVaild) {
-      dispatch(postLogin(email)).then((result) => {
+      dispatch(postLogin(email)).then(() => {
         navigate('/movie/list');
       });
     }

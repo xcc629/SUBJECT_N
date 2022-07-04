@@ -8,10 +8,13 @@ const ImgWrapper = styled.img`
 `;
 
 const FakeCoverWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100px;
   height: 90px;
   margin-right: 10px;
-  background-color: silver;
+  background-color: whitesmoke;
 `;
 
 const InfoWrapper = styled.div`

@@ -1,4 +1,4 @@
-async function postRequestToken(email: string) {
+async function postRequestToken() {
   const res = await fetch('https://api.themoviedb.org/4/auth/request_token', {
     method: 'POST',
     headers: {
@@ -19,7 +19,7 @@ async function postRequestToken(email: string) {
   return result.request_token;
 }
 
-async function postAccessToken(email: string) {
+async function postAccessToken() {
   try {
     const res = await fetch('https://api.themoviedb.org/4/auth/access_token', {
       method: 'POST',
@@ -33,7 +33,7 @@ async function postAccessToken(email: string) {
     });
     const result = await res.json();
 
-    if (!result.success) {
+    if (result.status_message) {
       localStorage.clear();
     }
 

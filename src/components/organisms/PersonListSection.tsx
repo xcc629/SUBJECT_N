@@ -21,19 +21,38 @@ export default function PersonListSection({ datas }: PersonListSectionProps) {
 
   const makeList = useCallback(
     (type: 'movie' | 'tv') => {
-      const list = datas[selectedIndx].known_for.filter((data) => {
-        return data.media_type === type;
-      });
+      if (datas.length) {
+        const list = datas[selectedIndx].known_for.filter((data) => {
+          return data.media_type === type;
+        });
 
-      if (type === 'movie') {
-        return (
-          <MovieListSection
-            datas={list as unknown as MovieListDataType[]}
-            types="search_people"
-          />
-        );
+        switch (type) {
+          case 'movie':
+            return (
+              <MovieListSection
+                datas={list as unknown as MovieListDataType[]}
+                types="search_people"
+              />
+            );
+
+          case 'tv':
+            return (
+              <TVShowListSection datas={list as unknown as TVshowDataType[]} />
+            );
+          default:
+            break;
+        }
       }
-      return <TVShowListSection datas={list as unknown as TVshowDataType[]} />;
+      return (
+        <Box
+          component={Paper}
+          sx={{
+            p: 2,
+          }}
+        >
+          해당하는 작품이 없습니다
+        </Box>
+      );
     },
     [selectedIndx],
   );
@@ -41,26 +60,39 @@ export default function PersonListSection({ datas }: PersonListSectionProps) {
   return (
     <Box sx={{ width: '1120px', m: '0 auto', mb: 5 }}>
       <Paper sx={{ p: 1, display: 'flex', overflowX: 'scroll' }}>
-        {datas.map((data, idx) => {
-          return (
-            <Box
-              onClick={() => {
-                setSelectedIndx(idx);
-              }}
-              sx={{
-                borderRadius: '5px',
-                bgcolor: selectedIndx === idx ? 'primary.300' : 'transparent',
-              }}
-            >
-              <PersonListItem
+        {datas.length ? (
+          datas.map((data, idx) => {
+            return (
+              <Box
                 key={data.id}
-                profilePath={data.profile_path}
-                name={data.name}
-                department={data.known_for_department}
-              />
-            </Box>
-          );
-        })}
+                onClick={() => {
+                  setSelectedIndx(idx);
+                }}
+                sx={{
+                  borderRadius: '5px',
+                  bgcolor: selectedIndx === idx ? 'primary.300' : 'transparent',
+                }}
+              >
+                <PersonListItem
+                  key={data.id}
+                  profilePath={data.profile_path}
+                  name={data.name}
+                  department={data.known_for_department}
+                />
+              </Box>
+            );
+          })
+        ) : (
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              margin: '40px auto',
+            }}
+          >
+            검색결과가 없습니다
+          </Box>
+        )}
       </Paper>
       <Typography variant="h6" mt={4} mb={1}>
         출연작
@@ -86,6 +118,7 @@ export default function PersonListSection({ datas }: PersonListSectionProps) {
           label="TV"
           sx={{
             width: '100%',
+            mt: 3,
           }}
         >
           {datas && makeList('tv')}
