@@ -2,22 +2,34 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
-import { LOG_OUT } from './types';
-import { postAccessToken, postRequestToken } from '../../apis/auth';
+import {
+  postAccessToken,
+  postRequestToken,
+  postSessionId,
+} from '../../apis/auth';
 import { RootState } from '../store';
 
 export const postLogin = createAsyncThunk(
   'user/login',
   async (email: string, thunkAPI) => {
-    const data = { email: '', requestToken: '', accessToken: '' };
+    const data = {
+      email: '',
+      requestToken: '',
+      accessToken: '',
+      sessionId: '',
+    };
     try {
       if (localStorage.getItem('requestToken')) {
-        const result = await postAccessToken();
+        const accessTokenResult = await postAccessToken();
+        const sessionIdResult = await postSessionId(
+          accessTokenResult.access_token,
+        );
         return {
           ...data,
           email,
           requestToken: localStorage.getItem('requestToken'),
-          accessToken: result.access_token,
+          accessToken: accessTokenResult.access_token,
+          sessionId: sessionIdResult.session_id,
         };
       }
       const result = await postRequestToken();
@@ -33,10 +45,7 @@ export interface User {
   email: string;
   requestToken: string;
   accessToken: string;
-}
-
-export interface LogOutAction {
-  type: typeof LOG_OUT;
+  sessionId: string;
 }
 
 const initialState = {
@@ -44,18 +53,13 @@ const initialState = {
   email: '',
   requestToken: '',
   accessToken: '',
+  sessionId: '',
 };
 
 export const loginSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {
-    logout: () => {
-      return {
-        ...initialState,
-      };
-    },
-  },
+  reducers: {},
   extraReducers: {
     [postLogin.pending.type]: (state) => {
       return { ...state, loading: true };
@@ -65,6 +69,7 @@ export const loginSlice = createSlice({
       state.email = action.payload.email;
       state.requestToken = action.payload.requestToken;
       state.accessToken = action.payload.accessToken;
+      state.sessionId = action.payload.sessionId;
     },
     [postLogin.rejected.type]: (state) => {
       return { ...state };
@@ -75,5 +80,4 @@ export const loginSlice = createSlice({
 export const userSelector = (state: RootState) => {
   return state.userlogin;
 };
-export const { logout } = loginSlice.actions;
 export default loginSlice.reducer;
