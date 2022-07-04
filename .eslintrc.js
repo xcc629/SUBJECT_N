@@ -18,16 +18,16 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
+  globals: {
+    JSX: true,
+  },
   plugins: ['react', '@typescript-eslint'],
   rules: {
     'import/no-extraneous-dependencies': 0, // 테스트 또는 개발환경을 구성하는 파일에서는 devDependency 사용을 허용
     'object-curly-newline': 0,
-    'no-unused-vars': 0,
-
     'eslint operator-linebreak': 0,
     'implicit-arrow-linebreak': ['error', 'below'],
     'arrow-body-style': ['error', 'always'],
-
     'react/jsx-filename-extension': [
       1,
       {

@@ -6,23 +6,26 @@ import {
   TVshowDataType,
 } from './dataTypes';
 
-export interface LogoProps {
+import { BaseLayoutProps } from './baseProps';
+
+export interface LogoProps extends BaseLayoutProps {
   withText: boolean;
 }
 
-export interface UserProfileProps {
+export interface UserProfileProps extends BaseLayoutProps {
   userEmail: string;
 }
 
-export interface SearchBarProps {
+export interface SearchBarProps extends BaseLayoutProps {
   category: string;
   setcategory: React.Dispatch<React.SetStateAction<string>>;
   search: string;
   setSearch: React.Dispatch<React.SetStateAction<string>>;
+  // eslint-disable-next-line no-unused-vars
   onSubmitForm: (e: React.FormEvent) => void;
 }
 
-export interface MovieListItemProps {
+export interface MovieListItemProps extends BaseLayoutProps {
   type: 'search_movie' | 'list' | 'search_people';
   backdropPath: MovieListDataType['backdrop_path'];
   title: MovieListDataType['title'];
@@ -41,7 +44,7 @@ export interface MovieListItemProps {
   video?: MovieListDataType['video'];
 }
 
-export interface TVShowListIyemProps {
+export interface TVShowListIyemProps extends BaseLayoutProps {
   posterPath: TVshowDataType['poster_path'];
   popularity: TVshowDataType['popularity'];
   overview: TVshowDataType['overview'];
@@ -56,25 +59,25 @@ export interface TVShowListIyemProps {
   originalName: TVshowDataType['original_name'];
 }
 
-export interface PersonListItemProps {
+export interface PersonListItemProps extends BaseLayoutProps {
   profilePath: PeopleSearchDataType['profile_path'];
   name: PeopleSearchDataType['name'];
   department: PeopleSearchDataType['known_for_department'];
 }
 
-export interface MovieListSectionProps {
+export interface MovieListSectionProps extends BaseLayoutProps {
   datas: MovieListDataType[];
   types: 'search_movie' | 'list' | 'search_people';
 }
 
-export interface MovieListLayoutProps {
+export interface MovieListLayoutProps extends BaseLayoutProps {
   datas: MovieListDataType[];
 }
 
-export interface TVShowListSectionProps {
+export interface TVShowListSectionProps extends BaseLayoutProps {
   datas: TVshowDataType[];
 }
 
-export interface PersonListSectionProps {
+export interface PersonListSectionProps extends BaseLayoutProps {
   datas: PeopleSearchDataType[];
 }
