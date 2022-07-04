@@ -4,6 +4,13 @@
 
 ## 설치 및 시작
 
+### 0. git clone
+
+아래의 명령어로 깃 클론을 진행해주세요. 
+```
+git clone https://github.com/xcc629/SUBJECT_N.git
+```
+
 ### 1. env 파일추가
 
 메일에 첨부되어 있는 텍스트 파일의 내용을 복사한 후, 
