@@ -1,6 +1,6 @@
 /* eslint-disable operator-linebreak */
 import * as React from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -66,8 +66,6 @@ export default function Login() {
 
       setEmail(user.email as string);
       setPw(user.password as string);
-      emailVaildFc();
-      pwVaildFc();
     },
     [email, pw],
   );
@@ -81,6 +79,11 @@ export default function Login() {
       });
     }
   };
+
+  useEffect(() => {
+    emailVaildFc();
+    pwVaildFc();
+  }, [pw, email]);
 
   return (
     <Container component="main" maxWidth="xs">

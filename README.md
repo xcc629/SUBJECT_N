@@ -1,46 +1,118 @@
-# Getting Started with Create React App
+# 과제 프로젝트
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+프론트부문 과제로 주어진 프로젝트를 개발하였습니다.
 
-## Available Scripts
+## 설치 및 시작
 
-In the project directory, you can run:
+### 1. env 파일추가
 
-### `npm start`
+이메일로 주어진 `.env.development` 파일을 가장 상위 디렉토리 루트에 넣어줍니다.
+<br/>
+(파일이 정상적이지 않을 경우를 대비하여, 메일에 첨부된 노션에 .env파일 내용을 작성해두었으니 참고해주시면 감사하겠습니다.)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+> 참고: 파일 구성
+>
+> ![파일 구성](https://user-images.githubusercontent.com/85507868/177072222-b1afc1cd-35b3-46ce-ba45-2df66fa353e4.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br/>
 
-### `npm test`
+### 2. 설치, 빌드
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+npm i
+```
 
-### `npm run build`
+스크립트로 설치를 진행한 후 아래 스크립트로 빌드를 한 번 진행해주세요.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+npm build 혹은 npm run build
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<br/>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 3. 실행
 
-### `npm run eject`
+아래 스크립트로 실행하면 `localhost:3000`에 로그인 페이지가 나타나면 정상 설치및 실행 된 것입니다. 만약 정상적으로 로그인 기능이 작동하지 않는다면, 빌드를 한번 더 진행해주시면 감사하겠습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm start 혹은 npm run start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br/>
 
-## Learn More
+## 사용 스택
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 기본
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    typeScript(ver 4.7.4), React(ver 18.2.0)
+    React-Router-dom(ver 6.3.0)
+
+### 코드스타일
+
+    prettier(ver 2.7.1), eslint(ver 8.18.0), stylelint-prettier(ver 2.0.0)
+
+- .prettierrc 파일 생성 후 규칙을 설정하였습니다.
+- .eslintrc 파일과 eslint-config-airbnb 룰을 사용하여 규칙을 설정하였습니다.
+- .stylelintrc 파일과 stylelint-config-prettier 로 규칙을 설정하였습니다.
+
+### css 프레임워크
+
+    MUI(ver 5.8.6), emotion-react(ver 11.9.3)
+
+### 상태관리 라이브러리
+
+    Redux(ver 4.2.0), react-redux(ver 8.0.2), reduxjs-toolkit(ver 1.8.3)
+
+### 버전 및 프로젝트 관리
+
+    git, github
+
+### 기타
+
+    redux-logger(ver 3.0.6)
+
+<br/>
+
+---
+
+<br/>
+
+## 구현 목록
+
+### 1. 로그인 페이지
+
+인증정보
+
+- [x] access_token / sesstion_id
+      구현
+- [x] 이메일, 비밀번호 유효성 검사
+- [x] 로그인 후 탭 내 유지
+
+      (* 유저이메일을 전역상태로 관리하여, 새로고침하면 로그인이 리셋되도록 구현되어 있습니다.)
+
+  <br/>
+
+### 2. movie 목록 조희 페이지
+
+- [x] 목록 리스트
+
+<br/>
+
+### 3. 검색 페이지
+
+검색 카테고리에 따라 다른 뷰가 보이도록 구현하였습니다.
+
+- [x] 'Movie' 검색
+- [x] 'people' 검색
+- [x] 'tv' 검색
+
+<br/>
+
+---
+
+<br/>
+
